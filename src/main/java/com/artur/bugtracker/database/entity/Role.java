@@ -2,8 +2,8 @@ package com.artur.bugtracker.database.entity;
 
 public enum Role {
 
-    ROLE_MANAGE_PROJECTS,
-    ROLE_MANAGE_COMMENTS,
-    ROLE_READ_USERS,
-    ROLE_MANAGE_USERS
+    MANAGE_PROJECTS,
+    MANAGE_COMMENTS,
+    READ_USERS,
+    MANAGE_USERS
 }

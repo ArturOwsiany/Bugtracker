@@ -38,7 +38,7 @@ public class BugTrackerController {
         return "navbar";
     }
 
-    @RequestMapping("/signInPage")
+    @GetMapping("/login")
     public String signInPage() {
         return "signInPage";
     }
