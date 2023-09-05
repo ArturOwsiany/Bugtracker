@@ -22,17 +22,17 @@
         </svg>
     </h1>
 
-    <form class="was-validated" style="margin-right: 500px; margin-left: 500px; margin-top: 10px;">
+    <form th:action="@{/login}" method="post" class="was-validated" style="margin-right: 500px; margin-left: 500px; margin-top: 10px;">
 
         <h1 class="h3 mb-3 fw-normal" style="color: #856404">Please sign in</h1>
 
         <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+            <input type="text" class="form-control" name="username" id="floatingInput" placeholder="name@example.com" required>
             <label for="floatingInput" style="color: #856404">Email address</label>
             <div class="invalid-feedback">Example invalid feedback text</div>
         </div>
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingPassword" aria-describedby="floatingPassword"
+            <input type="text" class="form-control" name="password" id="floatingPassword" aria-describedby="floatingPassword"
                    placeholder="Password" required>
         </div>
 
@@ -43,7 +43,8 @@
             </label>
         </div>
 
-        <a th:href="@{mainLayout}" class="btn btn-success w-100 py-2" type="submit">Sign in</a>
+
+        <input class="btn btn-success w-100 py-2" type="submit" value="Sign in"/>
         <span class="border-bottom" style="color:lightyellow;"></span>
 
 
