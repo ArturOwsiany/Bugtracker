@@ -1,0 +1,31 @@
+<div th:fragment="projectDetails"
+     xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <div th:insert="../templates/navbar :: navbar"></div>
+
+    <div style="width: 80%; margin: 20px auto;">
+
+        <div class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1" th:text="${project.name}">Project name</h5>
+                <small th:text="${project.createdDate}">Created date</small>
+            </div>
+            <small th:text="'Code: ' + ${project.code}">Project code</small>
+            <p th:text="${project.description}" class="mb-1">Project description</p>
+
+            <div class="d-flex w-100 justify-content-between">
+                <small th:text="'Creator: ' + ${project.creator.username}">Creator</small>
+                <div>
+                    <span th:if="${project.enabled}"><i class="bi bi-check-circle-fill"></i> Active</span>
+                    <span th:unless="${project.enabled}"><i class="bi bi-dash-circle-fill"></i> Disabled</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
