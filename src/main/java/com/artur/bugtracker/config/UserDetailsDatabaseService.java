@@ -19,7 +19,7 @@ import java.util.List;
 public class UserDetailsDatabaseService implements UserDetailsService {
 
     @Autowired
-    PersonRepository personRepository;
+    private PersonRepository personRepository;
 
     private final String ROLE_PREFIX = "ROLE_";
 

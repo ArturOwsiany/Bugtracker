@@ -23,10 +23,10 @@ public class BugTrackerController {
         return dtf.format(now);
     }
 
-    @RequestMapping("/requestList")
-    public String requestList() {
-        return "requestList";
-    }
+/*    @RequestMapping("/projects")
+    public String projects() {
+        return "projects";
+    }*/
 
     @RequestMapping("/report")
     public String raport() {
