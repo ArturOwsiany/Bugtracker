@@ -59,7 +59,7 @@ public class ProjectController {
     }
 
     @PostMapping("/create")
-    public String creteProjectSubmit(@ModelAttribute Project project) {
+    public String submitProject(@ModelAttribute Project project) {
         project = project.getId() == null ? createNewProject(project) : updateExistingProject(project);
         projectRepository.save(project);
         return "redirect:/projects";

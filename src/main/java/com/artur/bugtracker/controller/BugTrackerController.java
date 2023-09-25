@@ -23,16 +23,6 @@ public class BugTrackerController {
         return dtf.format(now);
     }
 
-/*    @RequestMapping("/projects")
-    public String projects() {
-        return "projects";
-    }*/
-
-    @RequestMapping("/report")
-    public String raport() {
-        return "report";
-    }
-
     @RequestMapping("/navbar")
     public String navbar() {
         return "navbar";

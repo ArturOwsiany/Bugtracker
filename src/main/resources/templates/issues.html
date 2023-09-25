@@ -1,0 +1,103 @@
+<div th:fragment="issues" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+     xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <div th:insert="../templates/navbar :: navbar"></div>
+
+
+    <div style="width: 80%; margin: 20px auto;">
+
+        <div class="d-flex w-100 justify-content-between" style="margin-bottom: 10px">
+            <h3>
+                Issues
+            </h3>
+
+        </div>
+
+        <form th:action="@{issues}" class="form-inline">
+
+            <select th:name="projectId" class="form-select form-control mr-2" aria-label="Project">
+                <option disabled="disabled" selected="selected"> Project</option>
+                <option th:each="project : ${projects}"
+                        th:value="${project.id}"
+                        th:text="${project.name}"
+                        th:selected="${project.id.toString()==selectedProjectId}">
+                </option>
+            </select>
+
+            <select th:name="status" class="form-select form-control mr-2" aria-label="Status">
+                <option disabled="disabled" selected="selected"> Status</option>
+                <option th:each="status : ${T(com.artur.bugtracker.database.entity.Status).values()}"
+                        th:value="${status}"
+                        th:text="${status.name()}"
+                        th:selected="${status.name()==selectedStatus}">
+                </option>
+            </select>
+
+            <input class="form-control mr-2" type="text" name="assignee" th:value="${selectedAssignee}"
+                   placeholder="Assignee">
+
+            <input type="submit" value="Search" class="btn btn-success mr-2">
+            <input type="button" value="Clear" class="btn btn-outline-success" onclick="clearFilters()">
+
+
+        </form>
+
+        <div th:each="issue : ${issues}" class="list-group">
+
+            <div th:href="@{/issues/{id}(id=${issue.id})}"
+                 class="card list-group-item-action flex-column align-items-start mb-3">
+
+                <div class="card-header d-flex w-100 justify-content-between">
+                    <div>
+                        <span th:if="${issue.type.name() == 'BUG'}"><i style="color:red;"
+                                                                       class="bi bi-bug-fill"></i> Bug </span>
+                        <span th:if="${issue.type.name() == 'TASK'}"><i style="color:blue;"
+                                                                        class="bi bi-file-earmark-check-fill"></i> Task </span>
+                        <span class="h4" th:text="${issue.code}">Code</span>
+                        <span class="h4 font-weight-light" th:text="${issue.name}">Issue name</span>
+                    </div>
+                    <small th:text="${issue.createdDate}">Created date</small>
+                </div>
+
+                <div class="card-body w-100">
+                    <div th:if="${issue.assignee != null}" th:text="'Assignee: ' + ${issue.assignee.getUsername()}">
+                        Assignee
+                    </div>
+                    <div th:text="${issue.description}" class="mb-1">Issue description</div>
+
+                    <div class="d-flex w-100 justify-content-between">
+                        <a th:href="@{/projects/{id}(id=${issue.project.id})}"
+                           th:text="${issue.project.name}">Project</a>
+                        <div>
+                            <span th:text="${issue.status.name()}" class="badge badge-secondary">Status</span>
+                            <span th:text="${issue.priority.name()}" class="badge badge-primary">Priority</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    function clearFilters() {
+        window.location = '/issues';
+    }
+</script>

@@ -22,6 +22,18 @@
         </button>
     </div>
 
+    <div style="text-align: center;">
+
+        <div>
+            <h3>New issue</h3>
+        </div>
+
+        <form th:object="${issue}" th:action="@{/issues/create}" method="post"
+              style="display: inline-block; text-align: left; width: 80%">
+        </form>
+
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="col-4">
@@ -78,6 +90,6 @@
         </div>
     </div>
     <div class="position-absolute top-0 start-100 translate-middle">
-        <button type="button" class="btn btn-success" style="margin-left:1190px">Send a request</button>
+        <button type="button" class="btn btn-success" style="margin-left:1190px">Create</button>
     </div>
 </div>
